@@ -40,6 +40,14 @@
   .lang-btn:hover{border-color:var(--lime);color:var(--lime)}
   .nav-cta{display:none}
   @media(min-width:880px){.nav-cta{display:inline-flex}}
+  .menu-btn{display:grid;place-items:center;width:42px;height:42px;border:2px solid var(--line);background:transparent;border-radius:8px;cursor:pointer;font-size:1.25rem;color:var(--ink)}
+  @media(min-width:880px){.menu-btn{display:none}}
+  .mobile-menu{display:none;flex-direction:column;padding:.2rem 0 1rem}
+  .mobile-menu.open{display:flex}
+  @media(min-width:880px){.mobile-menu{display:none!important}}
+  .mobile-menu a{padding:.85rem .3rem;color:var(--muted);border-top:1px solid var(--line);text-transform:uppercase;letter-spacing:.06em;font-weight:600;font-size:.9rem}
+  .mobile-menu a:hover{color:var(--ink)}
+  .mobile-menu .btn{margin-top:.7rem;justify-content:center}
 
   .hero{position:relative;overflow:hidden;padding:clamp(3.5rem,9vw,7rem) 0;
     background:radial-gradient(80% 120% at 80% -10%,rgba(198,242,78,.16),transparent 55%),var(--bg)}
@@ -90,10 +98,18 @@
     <a href="#contacto" data-es="Contacto" data-en="Contact">Contacto</a>
   </div>
   <div class="nav-right">
+    <button class="menu-btn" onclick="toggleMenu()" aria-label="Menú">☰</button>
     <button class="lang-btn" onclick="toggleLang()">EN</button>
     <a href="#contacto" class="btn btn-primary nav-cta" data-es="Primera clase gratis" data-en="First class free">Primera clase gratis</a>
   </div>
-</nav></div></header>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#clases" onclick="closeMenu()" data-es="Clases" data-en="Classes">Clases</a>
+  <a href="#planes" onclick="closeMenu()" data-es="Planes" data-en="Plans">Planes</a>
+  <a href="#horario" onclick="closeMenu()" data-es="Horario" data-en="Schedule">Horario</a>
+  <a href="#contacto" onclick="closeMenu()" data-es="Contacto" data-en="Contact">Contacto</a>
+  <a href="#contacto" onclick="closeMenu()" class="btn btn-primary" data-es="Primera clase gratis" data-en="First class free">Primera clase gratis</a>
+</div></div></header>
 
 <section class="hero"><div class="wrap">
   <span class="eyebrow" data-es="Gimnasio · Orlando, FL" data-en="Gym · Orlando, FL">Gimnasio · Orlando, FL</span>
@@ -195,6 +211,8 @@
     var cur='es'; try{cur=localStorage.getItem('pulse_lang')||'es';}catch(e){}
     setLang(cur==='es'?'en':'es');
   }
+  function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');}
+  function closeMenu(){document.getElementById('mobileMenu').classList.remove('open');}
   (function(){var l='es'; try{l=localStorage.getItem('pulse_lang')||'es';}catch(e){} setLang(l);})();
 </script>
 </body>
