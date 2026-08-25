@@ -27,12 +27,17 @@
   .btn-wa{background:#25D366;color:#06260f}
 
   header{position:sticky;top:0;z-index:50;background:rgba(12,13,16,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-  nav{display:flex;align-items:center;justify-content:space-between;height:74px}
+  nav{display:flex;align-items:center;justify-content:space-between;height:74px;gap:1rem}
   .logo{font-weight:900;font-size:1.4rem;letter-spacing:-.03em;text-transform:uppercase}
   .logo span{color:var(--lime)}
   .nav-links{display:none;gap:2rem;font-size:.85rem;text-transform:uppercase;letter-spacing:.08em;font-weight:600}
   @media(min-width:880px){.nav-links{display:flex}}
   .nav-links a{color:var(--muted)}.nav-links a:hover{color:var(--ink)}
+  .nav-right{display:flex;align-items:center;gap:.8rem}
+  .lang-btn{border:2px solid var(--line);color:var(--ink);background:transparent;border-radius:8px;padding:.35rem .75rem;font-weight:800;font-size:.8rem;cursor:pointer;letter-spacing:.05em;transition:.2s}
+  .lang-btn:hover{border-color:var(--lime);color:var(--lime)}
+  .nav-cta{display:none}
+  @media(min-width:880px){.nav-cta{display:inline-flex}}
 
   .hero{position:relative;overflow:hidden;padding:clamp(3.5rem,9vw,7rem) 0;
     background:radial-gradient(80% 120% at 80% -10%,rgba(198,242,78,.16),transparent 55%),var(--bg)}
@@ -48,7 +53,6 @@
   .head{max-width:60ch;margin-bottom:3rem}
   .head h2{font-size:clamp(2rem,5.5vw,3.2rem);margin:.6rem 0}
   .head p{color:var(--muted)}
-
   .grid{display:grid;gap:1.3rem;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
   .card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:1.8rem;transition:.28s}
   .card:hover{border-color:var(--lime);transform:translateY(-4px)}
@@ -59,7 +63,7 @@
   .plans{display:grid;gap:1.4rem;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
   .plan{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:2rem;position:relative}
   .plan.hot{background:linear-gradient(180deg,var(--surface2),var(--surface));border-color:var(--lime)}
-  .plan.hot::after{content:"Recomendado";position:absolute;top:-11px;right:20px;background:var(--lime);color:#101208;font-size:.68rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:.3rem .8rem;border-radius:6px}
+  .plan.hot::after{content:attr(data-tag);position:absolute;top:-11px;right:20px;background:var(--lime);color:#101208;font-size:.68rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:.3rem .8rem;border-radius:6px}
   .plan .amt{font-size:2.8rem;font-weight:900;margin:.5rem 0}
   .plan .amt small{font-size:1rem;color:var(--muted);font-weight:600}
   .plan ul{list-style:none;margin:1.2rem 0}
@@ -69,7 +73,6 @@
   .cta{background:linear-gradient(120deg,var(--lime),#e9ff8a);color:#0e1206;border-radius:22px;padding:clamp(2.4rem,6vw,4rem);text-align:center}
   .cta h2{font-size:clamp(2.2rem,6vw,3.4rem)}
   .cta p{max-width:44ch;margin:1rem auto 2rem;font-weight:600;text-transform:none}
-
   footer{padding:3rem 0 2rem;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
   .foot-grid{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1.5rem;margin-bottom:2rem}
   .fab{position:fixed;right:20px;bottom:20px;z-index:60;background:#25D366;color:#fff;width:58px;height:58px;border-radius:50%;display:grid;place-items:center;box-shadow:0 10px 30px rgba(37,211,102,.5);font-size:1.7rem}
@@ -78,77 +81,119 @@
 <body>
 <header><div class="wrap"><nav>
   <div class="logo">PULSE<span>·</span>FITNESS</div>
-  <div class="nav-links"><a href="#clases">Clases</a><a href="#planes">Planes</a><a href="#horario">Horario</a><a href="#contacto">Contacto</a></div>
-  <a href="#contacto" class="btn btn-primary">Primera clase gratis</a>
+  <div class="nav-links">
+    <a href="#clases" data-es="Clases" data-en="Classes">Clases</a>
+    <a href="#planes" data-es="Planes" data-en="Plans">Planes</a>
+    <a href="#horario" data-es="Horario" data-en="Schedule">Horario</a>
+    <a href="#contacto" data-es="Contacto" data-en="Contact">Contacto</a>
+  </div>
+  <div class="nav-right">
+    <button class="lang-btn" onclick="toggleLang()">EN</button>
+    <a href="#contacto" class="btn btn-primary nav-cta" data-es="Primera clase gratis" data-en="First class free">Primera clase gratis</a>
+  </div>
 </nav></div></header>
 
 <section class="hero"><div class="wrap">
-  <span class="eyebrow">Gimnasio · Orlando, FL</span>
-  <h1>Entrena duro.<br><span>Sin excusas.</span></h1>
-  <p>Sala de pesas de última generación, clases dirigidas todos los días y entrenadores que te llevan a tu mejor versión.</p>
+  <span class="eyebrow" data-es="Gimnasio · Orlando, FL" data-en="Gym · Orlando, FL">Gimnasio · Orlando, FL</span>
+  <h1 data-es="Entrena duro.<br><span>Sin excusas.</span>" data-en="Train hard.<br><span>No excuses.</span>">Entrena duro.<br><span>Sin excusas.</span></h1>
+  <p data-es="Sala de pesas de última generación, clases dirigidas todos los días y entrenadores que te llevan a tu mejor versión." data-en="State-of-the-art weight room, daily group classes and trainers who take you to your best self.">Sala de pesas de última generación, clases dirigidas todos los días y entrenadores que te llevan a tu mejor versión.</p>
   <div class="hero-cta">
-    <a href="#contacto" class="btn btn-primary">Empieza gratis</a>
-    <a href="#planes" class="btn btn-ghost">Ver planes</a>
+    <a href="https://wa.me/14075550188" target="_blank" rel="noopener" class="btn btn-primary" data-es="Empieza gratis" data-en="Start for free">Empieza gratis</a>
+    <a href="#planes" class="btn btn-ghost" data-es="Ver planes" data-en="See plans">Ver planes</a>
   </div>
   <div class="metrics">
-    <div class="metric"><b>2.000+</b><span>Miembros activos</span></div>
-    <div class="metric"><b>40+</b><span>Clases semanales</span></div>
-    <div class="metric"><b>24/7</b><span>Acceso a la sala</span></div>
+    <div class="metric"><b>2.000+</b><span data-es="Miembros activos" data-en="Active members">Miembros activos</span></div>
+    <div class="metric"><b>40+</b><span data-es="Clases semanales" data-en="Weekly classes">Clases semanales</span></div>
+    <div class="metric"><b>24/7</b><span data-es="Acceso a la sala" data-en="Gym access">Acceso a la sala</span></div>
   </div>
 </div></section>
 
 <section class="pad" id="clases"><div class="wrap">
-  <div class="head"><span class="eyebrow">Nuestras clases</span><h2>Encuentra tu ritmo</h2><p>Programas para todos los niveles, desde principiante hasta atleta.</p></div>
+  <div class="head"><span class="eyebrow" data-es="Nuestras clases" data-en="Our classes">Nuestras clases</span><h2 data-es="Encuentra tu ritmo" data-en="Find your rhythm">Encuentra tu ritmo</h2><p data-es="Programas para todos los niveles, desde principiante hasta atleta." data-en="Programs for every level, from beginner to athlete.">Programas para todos los niveles, desde principiante hasta atleta.</p></div>
   <div class="grid">
-    <div class="card"><div class="ico">🏋️</div><h3>Fuerza</h3><p>Levantamiento y pesas guiado para ganar músculo con técnica correcta.</p></div>
-    <div class="card"><div class="ico">🔥</div><h3>HIIT</h3><p>Entrenamiento por intervalos de alta intensidad para quemar grasa rápido.</p></div>
-    <div class="card"><div class="ico">🧘</div><h3>Yoga &amp; movilidad</h3><p>Flexibilidad, equilibrio y recuperación para cuidar tu cuerpo.</p></div>
-    <div class="card"><div class="ico">🚴</div><h3>Cycling</h3><p>Spinning con música y energía que te hace sudar sin darte cuenta.</p></div>
-    <div class="card"><div class="ico">🥊</div><h3>Boxeo</h3><p>Cardio, coordinación y descarga de estrés al ritmo del saco.</p></div>
-    <div class="card"><div class="ico">💪</div><h3>Personal training</h3><p>Un entrenador dedicado y un plan hecho solo para tus objetivos.</p></div>
+    <div class="card"><div class="ico">🏋️</div><h3 data-es="Fuerza" data-en="Strength">Fuerza</h3><p data-es="Levantamiento y pesas guiado para ganar músculo con técnica correcta." data-en="Guided lifting and weights to build muscle with proper technique.">Levantamiento y pesas guiado para ganar músculo con técnica correcta.</p></div>
+    <div class="card"><div class="ico">🔥</div><h3>HIIT</h3><p data-es="Entrenamiento por intervalos de alta intensidad para quemar grasa rápido." data-en="High-intensity interval training to burn fat fast.">Entrenamiento por intervalos de alta intensidad para quemar grasa rápido.</p></div>
+    <div class="card"><div class="ico">🧘</div><h3 data-es="Yoga &amp; movilidad" data-en="Yoga &amp; mobility">Yoga &amp; movilidad</h3><p data-es="Flexibilidad, equilibrio y recuperación para cuidar tu cuerpo." data-en="Flexibility, balance and recovery to care for your body.">Flexibilidad, equilibrio y recuperación para cuidar tu cuerpo.</p></div>
+    <div class="card"><div class="ico">🚴</div><h3>Cycling</h3><p data-es="Spinning con música y energía que te hace sudar sin darte cuenta." data-en="Spinning with music and energy that makes you sweat without noticing.">Spinning con música y energía que te hace sudar sin darte cuenta.</p></div>
+    <div class="card"><div class="ico">🥊</div><h3 data-es="Boxeo" data-en="Boxing">Boxeo</h3><p data-es="Cardio, coordinación y descarga de estrés al ritmo del saco." data-en="Cardio, coordination and stress relief to the rhythm of the bag.">Cardio, coordinación y descarga de estrés al ritmo del saco.</p></div>
+    <div class="card"><div class="ico">💪</div><h3>Personal training</h3><p data-es="Un entrenador dedicado y un plan hecho solo para tus objetivos." data-en="A dedicated trainer and a plan built just for your goals.">Un entrenador dedicado y un plan hecho solo para tus objetivos.</p></div>
   </div>
 </div></section>
 
 <section class="pad" id="planes" style="background:var(--surface)"><div class="wrap">
-  <div class="head"><span class="eyebrow">Planes</span><h2>Elige tu membresía</h2><p>Sin permanencia. Cancela cuando quieras.</p></div>
+  <div class="head"><span class="eyebrow" data-es="Planes" data-en="Plans">Planes</span><h2 data-es="Elige tu membresía" data-en="Choose your membership">Elige tu membresía</h2><p data-es="Sin permanencia. Cancela cuando quieras." data-en="No commitment. Cancel anytime.">Sin permanencia. Cancela cuando quieras.</p></div>
   <div class="plans">
-    <div class="plan"><h3>Básico</h3><div class="amt">$29<small>/mes</small></div>
-      <ul><li>Acceso a sala de pesas</li><li>Vestuarios y duchas</li><li>App de seguimiento</li></ul>
-      <a href="#contacto" class="btn btn-ghost" style="width:100%;justify-content:center">Elegir</a></div>
-    <div class="plan hot"><h3>Pro</h3><div class="amt">$49<small>/mes</small></div>
-      <ul><li>Todo lo del Básico</li><li>Clases dirigidas ilimitadas</li><li>Acceso 24/7</li><li>1 sesión personal/mes</li></ul>
-      <a href="#contacto" class="btn btn-primary" style="width:100%;justify-content:center">Elegir</a></div>
+    <div class="plan"><h3 data-es="Básico" data-en="Basic">Básico</h3><div class="amt">$29<small>/mes</small></div>
+      <ul>
+        <li data-es="Acceso a sala de pesas" data-en="Weight room access">Acceso a sala de pesas</li>
+        <li data-es="Vestuarios y duchas" data-en="Locker rooms and showers">Vestuarios y duchas</li>
+        <li data-es="App de seguimiento" data-en="Tracking app">App de seguimiento</li>
+      </ul>
+      <a href="https://wa.me/14075550188" target="_blank" rel="noopener" class="btn btn-ghost" style="width:100%;justify-content:center" data-es="Elegir" data-en="Choose">Elegir</a></div>
+    <div class="plan hot" data-tag="Top"><h3>Pro</h3><div class="amt">$49<small>/mes</small></div>
+      <ul>
+        <li data-es="Todo lo del Básico" data-en="Everything in Basic">Todo lo del Básico</li>
+        <li data-es="Clases dirigidas ilimitadas" data-en="Unlimited group classes">Clases dirigidas ilimitadas</li>
+        <li data-es="Acceso 24/7" data-en="24/7 access">Acceso 24/7</li>
+        <li data-es="1 sesión personal/mes" data-en="1 personal session/mo">1 sesión personal/mes</li>
+      </ul>
+      <a href="https://wa.me/14075550188" target="_blank" rel="noopener" class="btn btn-primary" style="width:100%;justify-content:center" data-es="Elegir" data-en="Choose">Elegir</a></div>
     <div class="plan"><h3>Elite</h3><div class="amt">$89<small>/mes</small></div>
-      <ul><li>Todo lo del Pro</li><li>4 sesiones personales/mes</li><li>Plan de nutrición</li><li>Invitado gratis</li></ul>
-      <a href="#contacto" class="btn btn-ghost" style="width:100%;justify-content:center">Elegir</a></div>
+      <ul>
+        <li data-es="Todo lo del Pro" data-en="Everything in Pro">Todo lo del Pro</li>
+        <li data-es="4 sesiones personales/mes" data-en="4 personal sessions/mo">4 sesiones personales/mes</li>
+        <li data-es="Plan de nutrición" data-en="Nutrition plan">Plan de nutrición</li>
+        <li data-es="Invitado gratis" data-en="Free guest pass">Invitado gratis</li>
+      </ul>
+      <a href="https://wa.me/14075550188" target="_blank" rel="noopener" class="btn btn-ghost" style="width:100%;justify-content:center" data-es="Elegir" data-en="Choose">Elegir</a></div>
   </div>
 </div></section>
 
 <section class="pad" id="horario"><div class="wrap">
-  <div class="head"><span class="eyebrow">Horario</span><h2>Abierto cuando tú puedas</h2></div>
+  <div class="head"><span class="eyebrow" data-es="Horario" data-en="Schedule">Horario</span><h2 data-es="Abierto cuando tú puedas" data-en="Open when you can">Abierto cuando tú puedas</h2></div>
   <div class="grid">
-    <div class="card"><h3>Lun – Vie</h3><p style="color:var(--lime);font-weight:700">5:00 – 23:00</p><p>Clases cada hora en horario de mañana y tarde.</p></div>
-    <div class="card"><h3>Sábado</h3><p style="color:var(--lime);font-weight:700">7:00 – 20:00</p><p>Clases especiales de fin de semana.</p></div>
-    <div class="card"><h3>Domingo</h3><p style="color:var(--lime);font-weight:700">8:00 – 16:00</p><p>Yoga, movilidad y sala libre.</p></div>
-    <div class="card"><h3>Miembros Pro/Elite</h3><p style="color:var(--lime);font-weight:700">24/7</p><p>Acceso a la sala con tu llave digital.</p></div>
+    <div class="card"><h3 data-es="Lun – Vie" data-en="Mon – Fri">Lun – Vie</h3><p style="color:var(--lime);font-weight:700">5:00 – 23:00</p><p data-es="Clases cada hora en horario de mañana y tarde." data-en="Classes every hour, morning and evening.">Clases cada hora en horario de mañana y tarde.</p></div>
+    <div class="card"><h3 data-es="Sábado" data-en="Saturday">Sábado</h3><p style="color:var(--lime);font-weight:700">7:00 – 20:00</p><p data-es="Clases especiales de fin de semana." data-en="Special weekend classes.">Clases especiales de fin de semana.</p></div>
+    <div class="card"><h3 data-es="Domingo" data-en="Sunday">Domingo</h3><p style="color:var(--lime);font-weight:700">8:00 – 16:00</p><p data-es="Yoga, movilidad y sala libre." data-en="Yoga, mobility and open gym.">Yoga, movilidad y sala libre.</p></div>
+    <div class="card"><h3 data-es="Miembros Pro/Elite" data-en="Pro/Elite members">Miembros Pro/Elite</h3><p style="color:var(--lime);font-weight:700">24/7</p><p data-es="Acceso a la sala con tu llave digital." data-en="Gym access with your digital key.">Acceso a la sala con tu llave digital.</p></div>
   </div>
 </div></section>
 
 <section class="pad" id="contacto"><div class="wrap"><div class="cta">
-  <span class="eyebrow" style="color:#3a4a10">Empieza hoy</span>
-  <h2>Tu primera clase es gratis</h2>
-  <p>Ven, pruébalo y siente la diferencia. Sin compromiso. Reserva por WhatsApp y te esperamos.</p>
-  <a href="https://wa.me/14075550188?text=Hola%2C%20quiero%20mi%20primera%20clase%20gratis%20en%20Pulse%20Fitness" class="btn btn-wa" target="_blank" rel="noopener">💬 Reservar por WhatsApp</a>
+  <span class="eyebrow" style="color:#3a4a10" data-es="Empieza hoy" data-en="Start today">Empieza hoy</span>
+  <h2 data-es="Tu primera clase es gratis" data-en="Your first class is free">Tu primera clase es gratis</h2>
+  <p data-es="Ven, pruébalo y siente la diferencia. Sin compromiso. Reserva por WhatsApp y te esperamos." data-en="Come, try it and feel the difference. No commitment. Book on WhatsApp and we'll be waiting.">Ven, pruébalo y siente la diferencia. Sin compromiso. Reserva por WhatsApp y te esperamos.</p>
+  <a href="https://wa.me/14075550188?text=Hola%2C%20quiero%20mi%20primera%20clase%20gratis%20en%20Pulse%20Fitness" class="btn btn-wa" target="_blank" rel="noopener" data-es="💬 Reservar por WhatsApp" data-en="💬 Book on WhatsApp">💬 Reservar por WhatsApp</a>
   <p style="margin-top:2rem;opacity:.7;font-size:.9rem">📍 500 Central Blvd, Orlando · 📞 (407) 555-0188</p>
 </div></div></section>
 
 <footer><div class="wrap">
   <div class="foot-grid">
     <div class="logo">PULSE<span>·</span>FITNESS</div>
-    <div style="display:flex;gap:1.5rem"><a href="#clases">Clases</a><a href="#planes">Planes</a><a href="#contacto">Contacto</a></div>
+    <div style="display:flex;gap:1.5rem">
+      <a href="#clases" data-es="Clases" data-en="Classes">Clases</a>
+      <a href="#planes" data-es="Planes" data-en="Plans">Planes</a>
+      <a href="#contacto" data-es="Contacto" data-en="Contact">Contacto</a>
+    </div>
   </div>
-  <p>© 2026 Pulse Fitness Club · Proyecto demo diseñado por <a href="https://soledigitalservice.com" style="color:var(--lime)">Sole Digital Service</a></p>
+  <p data-es="© 2026 Pulse Fitness Club · Proyecto demo diseñado por Sole Digital Service" data-en="© 2026 Pulse Fitness Club · Demo project designed by Sole Digital Service">© 2026 Pulse Fitness Club · Proyecto demo diseñado por Sole Digital Service</p>
 </div></footer>
 <a class="fab" href="https://wa.me/14075550188" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
+
+<script>
+  function setLang(l){
+    document.documentElement.lang=l;
+    document.querySelectorAll('[data-es]').forEach(function(e){
+      var v=e.getAttribute('data-'+l); if(v!==null) e.innerHTML=v;
+    });
+    try{localStorage.setItem('pulse_lang',l);}catch(e){}
+    document.querySelectorAll('.lang-btn').forEach(function(b){b.textContent=(l==='es'?'EN':'ES');});
+  }
+  function toggleLang(){
+    var cur='es'; try{cur=localStorage.getItem('pulse_lang')||'es';}catch(e){}
+    setLang(cur==='es'?'en':'es');
+  }
+  (function(){var l='es'; try{l=localStorage.getItem('pulse_lang')||'es';}catch(e){} setLang(l);})();
+</script>
 </body>
 </html>
